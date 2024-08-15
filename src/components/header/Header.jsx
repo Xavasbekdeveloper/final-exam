@@ -8,7 +8,9 @@ import { FaRegCircleUser, FaBarsStaggered } from "react-icons/fa6";
 import logo from "../../assets/icons/logo.svg";
 
 const Header = () => {
-  const [topHide, setTopHide] = useState(sessionStorage.getItem("topHide"));
+  const [topHide, setTopHide] = useState(
+    sessionStorage.getItem("topHide") || true
+  );
   const [bar, setBar] = useState(false);
   const handleTopHide = () => {
     setTopHide(false);
