@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import casualImg from "../../assets/images/casual.png";
 import formalImg from "../../assets/images/formal.png";
 import partyImg from "../../assets/images/party.png";
@@ -52,4 +52,4 @@ const Category = () => {
   );
 };
 
-export default Category;
+export default memo(Category);
