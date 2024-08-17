@@ -7,7 +7,7 @@ import calvin from "../../assets/icons/calvin.svg";
 
 const Brands = () => {
   return (
-    <div className="py-10 max-md:py-5 bg-black">
+    <div className="py-10 max-md:py-5 bg-black mb-20">
       <div className="container flex items-center justify-between gap-7 max-lg:flex-wrap max-lg:justify-center">
         <img className="max-sm:w-28 max-sm:h-6" src={versace} alt="brand img" />
         <img className="max-sm:w-16 max-sm:h-6" src={zara} alt="brand img" />
