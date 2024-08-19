@@ -13,18 +13,18 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, { payload }) => {
-      let index = state.value.findIndex((el) => el.id === payload.id);
+      let index = state.value.findIndex((el) => el._id === payload._id);
       if (index < 0) {
         state.value = [...state.value, { ...payload, amount: 1 }];
       }
       saveCartData(state.value);
     },
     removeCart: (state, { payload }) => {
-      state.value = state.value.filter((el) => el.id !== payload.id);
+      state.value = state.value.filter((el) => el._id !== payload._id);
       saveCartData(state.value);
     },
     increaseAmount: (state, { payload }) => {
-      let index = state.value.findIndex((el) => el.id === payload.id);
+      let index = state.value.findIndex((el) => el._id === payload._id);
       state.value = state.value?.map((el, inx) => {
         if (index === inx) {
           // aynan siz bosgan product
@@ -37,7 +37,7 @@ const cartSlice = createSlice({
       saveCartData(state.value);
     },
     decreaseAmount: (state, { payload }) => {
-      let index = state.value.findIndex((el) => el.id === payload.id);
+      let index = state.value.findIndex((el) => el._id === payload._id);
       state.value = state.value?.map((el, inx) =>
         index === inx ? { ...payload, amount: el.amount - 1 } : el
       );

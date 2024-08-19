@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo, useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { IoClose, IoSearch } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
@@ -6,16 +6,35 @@ import { LuShoppingCart } from "react-icons/lu";
 import { FaRegCircleUser, FaBarsStaggered } from "react-icons/fa6";
 
 import logo from "../../assets/icons/logo.svg";
+import { useSelector } from "react-redux";
 
 const Header = () => {
-  const [topHide, setTopHide] = useState(
-    sessionStorage.getItem("topHide") || true
-  );
+  const [topHide, setTopHide] = useState(true);
   const [bar, setBar] = useState(false);
+  const [shrink, setShrink] = useState(false);
+
+  const cartData = useSelector((state) => state.cart.value);
+
   const handleTopHide = () => {
     setTopHide(false);
-    sessionStorage.setItem("topHide", topHide);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 35.97) {
+        setShrink(true);
+      } else {
+        setShrink(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
       {topHide ? (
@@ -42,8 +61,12 @@ const Header = () => {
         <></>
       )}
       <header className="sticky top-0 left-0 w-full bg-white z-50">
-        <nav className="py-6">
-          <div className="container flex items-center justify-between gap-10 max-md:gap-5">
+        <nav className="container">
+          <div
+            className={`border-b border-[#0000001A] flex items-center justify-between gap-10 max-md:gap-5 transition-all duration-300 ${
+              shrink ? "py-3" : "py-6"
+            }`}
+          >
             <div className="flex items-center gap-4">
               <button
                 onClick={() => setBar(true)}
@@ -101,8 +124,15 @@ const Header = () => {
               <button className="hidden max-lg:block">
                 <IoSearch className="h-5 w-6" />
               </button>
-              <Link to={"/cart"}>
+              <Link className="relative" to={"/cart"}>
                 <LuShoppingCart className="h-5 w-6" />
+                {cartData?.length ? (
+                  <span className="absolute -top-3 -right-3 text-white text-[10px] w-5 h-5 rounded-full bg-[#c0c0c0] flex items-center justify-center">
+                    {cartData?.length}
+                  </span>
+                ) : (
+                  <></>
+                )}
               </Link>
               <Link to={"/admin"}>
                 <FaRegCircleUser className="h-5 w-6" />

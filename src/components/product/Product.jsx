@@ -5,10 +5,12 @@ import { IoCart, IoCartOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addWishlist } from "../../context/slice/wishlistSlice";
+import { addToCart } from "../../context/slice/cartSlice";
 
 const Product = ({ data }) => {
   const dispatch = useDispatch();
   const wishlistData = useSelector((state) => state.wishlist.data);
+  const cartData = useSelector((state) => state.cart.value);
   // console.log(wishlistData);
 
   const rating = (rating) => {
@@ -80,8 +82,15 @@ const Product = ({ data }) => {
                   <FaRegHeart className="w-4 h-4 max-[500px]:w-3 max-[500px]:h-3" />
                 )}
               </button>
-              <button className="text-[#00000066] grid place-items-center p-1.5 rounded-3xl border border-[#00000066] max-[500px]:p-1">
-                <IoCartOutline className="w-4 h-4 max-[500px]:w-3 max-[500px]:h-3" />
+              <button
+                onClick={() => dispatch(addToCart(data))}
+                className="text-[#00000066] grid place-items-center p-1.5 rounded-3xl border border-[#00000066] max-[500px]:p-1"
+              >
+                {cartData.some((el) => el._id === data._id) ? (
+                  <IoCart className="w-4 h-4 max-[500px]:w-3 max-[500px]:h-3 text-[#00000066]" />
+                ) : (
+                  <IoCartOutline className="w-4 h-4 max-[500px]:w-3 max-[500px]:h-3" />
+                )}
               </button>
             </div>
           </div>
