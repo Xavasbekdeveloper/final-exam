@@ -6,6 +6,9 @@ const Home = lazy(() => import("./pages/home/Home"));
 const Detail = lazy(() => import("./pages/detail/Detail"));
 const Wishlist = lazy(() => import("./pages/wishlist/Wishlist"));
 const Cart = lazy(() => import("./pages/cart/Cart"));
+const CartView = lazy(() => import("./pages/cart/view/View"));
+const CartCheckout = lazy(() => import("./pages/cart/checkout/Checkout"));
+
 
 function App() {
   return (
@@ -15,7 +18,10 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/wishlist" element={<Wishlist />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<Cart />} >
+            <Route path="view" element={<CartView />} />
+            <Route path="checkout" element={<CartCheckout />} />
+          </Route>
         </Route>
       </Routes>
     </>

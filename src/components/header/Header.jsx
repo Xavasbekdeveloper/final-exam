@@ -124,7 +124,7 @@ const Header = () => {
               <button className="hidden max-lg:block">
                 <IoSearch className="h-5 w-6" />
               </button>
-              <Link className="relative" to={"/cart"}>
+              <Link className="relative" to={"/cart/view"}>
                 <LuShoppingCart className="h-5 w-6" />
                 {cartData?.length ? (
                   <span className="absolute -top-3 -right-3 text-white text-[10px] w-5 h-5 rounded-full bg-[#c0c0c0] flex items-center justify-center">
