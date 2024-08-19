@@ -1,0 +1,28 @@
+.empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 12px;
+    padding: 30px 0;
+
+    button {
+        border: none;
+        background-color: transparent;
+        border: 1px solid #121212;
+        color: #121212;
+        font-size: 20px;
+        font-weight: 400;
+        border-radius: 20px;
+        padding: 5px 15px;
+    }
+}
+
+
+@media (max-width: 570px) {
+    .empty {
+        img {
+            width: 100%;
+        }
+    }
+}

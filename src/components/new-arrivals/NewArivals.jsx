@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import { useGetProductsQuery } from "../../context/api/productApi";
 import Product from "../product/Product";
+import ProductsLoading from "../products-loading";
 
 const NewArivals = ({ title }) => {
   const limit = 4;
@@ -23,7 +24,7 @@ const NewArivals = ({ title }) => {
           </h2>
           <div className="grid grid-cols-4 gap-5 mb-16 max-lg:grid-cols-3 max-md:grid-cols-2 max-[570px]:gap-3">
             {isLoading ? (
-              <h3>Loading...</h3>
+              <ProductsLoading limit={limit} />
             ) : (
               data?.innerData?.map((product) => (
                 <Product key={product?._id} data={product} />

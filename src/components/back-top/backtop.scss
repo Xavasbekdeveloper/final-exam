@@ -1,0 +1,32 @@
+.backtop {
+    position: fixed;
+    bottom: 30px;
+    right: 13px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+
+
+    button {
+        background-color: #2f2e2e;
+        color: #fff;
+        width: 40px;
+        height: 40px;
+        border: none;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #60606095;
+        }
+    }
+
+
+}
+
+.show {
+    opacity: 1;
+}
