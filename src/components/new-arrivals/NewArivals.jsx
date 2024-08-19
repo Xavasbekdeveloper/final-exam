@@ -15,7 +15,7 @@ const NewArivals = ({ title }) => {
       <section className="mb-10">
         <div
           className={`container ${
-            title !== "Top Selling" ? "border-b border-[#0000001A]" : ""
+            title === "New Arrivals" ? "border-b border-[#0000001A]" : ""
           }`}
         >
           <h2 className="text-center text-5xl font-bold mb-14 uppercase max-sm:text-4xl">

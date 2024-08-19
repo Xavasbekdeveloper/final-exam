@@ -51,7 +51,7 @@ const Header = () => {
               >
                 <FaBarsStaggered className="w-6 h-6" />
               </button>
-              <Link>
+              <Link to={"/"}>
                 <img src={logo} alt="logo img" />
               </Link>
             </div>
@@ -72,18 +72,18 @@ const Header = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink className={"/on-sale"}>
+                <NavLink to={"/on-sale"}>
                   <span className="text-base font-normal">On Sale</span>
                 </NavLink>
               </li>
               <li>
-                <NavLink className={"/new-arrivals"}>
+                <NavLink to={"/new-arrivals"}>
                   <span className="text-base font-normal">New Arrivals</span>
                 </NavLink>
               </li>
               <li>
-                <NavLink className={"/brands"}>
-                  <span className="text-base font-normal">Brands</span>
+                <NavLink to={"/wishlist"}>
+                  <span className="text-base font-normal">Wishlist</span>
                 </NavLink>
               </li>
             </ul>

@@ -2,8 +2,15 @@ import React, { memo } from "react";
 import { IoIosStar, IoIosStarHalf, IoIosStarOutline } from "react-icons/io";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { IoCart, IoCartOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addWishlist } from "../../context/slice/wishlistSlice";
 
 const Product = ({ data }) => {
+  const dispatch = useDispatch();
+  const wishlistData = useSelector((state) => state.wishlist.data);
+  // console.log(wishlistData);
+
   const rating = (rating) => {
     let res = [];
     for (let i = 0; i < parseInt(rating); i++) {
@@ -23,18 +30,24 @@ const Product = ({ data }) => {
     }
     return res;
   };
+
   return (
     <>
       <div className="flex flex-col">
-        <div className=" h-[298px] w-full bg-[#F0EEED] rounded-[20px] p-3 mb-4 max-[500px]:h-60">
-          <img
-            className="w-full h-full object-contain"
-            src={data?.urls[0]}
-            alt={data?.title}
-          />
-        </div>
+        <Link to={`/detail/${data?._id}`}>
+          <div className=" h-[298px] w-full bg-[#F0EEED] rounded-[20px] p-3 mb-4 max-[500px]:h-60">
+            <img
+              className="w-full h-full object-contain"
+              src={data?.urls[0]}
+              alt={data?.title}
+            />
+          </div>
+        </Link>
         <div className="pr-2">
-          <h3 className="font-bold text-xl mb-2 line-clamp-2 max-[500px]:text-base">
+          <h3
+            title={data?.title}
+            className="font-bold text-xl mb-2 line-clamp-2 max-[500px]:text-base"
+          >
             {data?.title}
           </h3>
           <div className="flex items-center gap-3 mb-2">
@@ -57,8 +70,15 @@ const Product = ({ data }) => {
               )}
             </div>
             <div className="flex items-center justify-start gap-3">
-              <button className="text-[#00000066] grid place-items-center p-1.5 rounded-3xl border border-[#00000066] max-[500px]:p-1">
-                <FaRegHeart className="w-4 h-4 max-[500px]:w-3 max-[500px]:h-3" />
+              <button
+                onClick={() => dispatch(addWishlist(data))}
+                className="text-[#00000066] grid place-items-center p-1.5 rounded-3xl border border-[#00000066] max-[500px]:p-1"
+              >
+                {wishlistData.some((el) => el._id === data._id) ? (
+                  <FaHeart className="w-4 h-4 max-[500px]:w-3 max-[500px]:h-3 text-[#00000066]" />
+                ) : (
+                  <FaRegHeart className="w-4 h-4 max-[500px]:w-3 max-[500px]:h-3" />
+                )}
               </button>
               <button className="text-[#00000066] grid place-items-center p-1.5 rounded-3xl border border-[#00000066] max-[500px]:p-1">
                 <IoCartOutline className="w-4 h-4 max-[500px]:w-3 max-[500px]:h-3" />
