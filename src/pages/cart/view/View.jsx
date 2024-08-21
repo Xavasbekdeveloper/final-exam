@@ -54,7 +54,7 @@ const View = () => {
       <div className="py-10">
         <div className="container">
           <h1 className="mb-6 font-bold text-[40px] uppercase">Your Cart</h1>
-          <div className="grid grid-cols-[1fr_460px] gap-5 max-[965px]:grid-cols-1">
+          <div className="grid grid-cols-[1fr_460px] items-start gap-5 max-[965px]:grid-cols-1">
             {/* left */}
             <div className="rounded-[20px] border border-[#0000001A] py-5 px-6 max-[450px]:p-3">
               {cartData?.map((product) => (

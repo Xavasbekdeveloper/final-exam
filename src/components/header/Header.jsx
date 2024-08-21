@@ -14,6 +14,7 @@ const Header = () => {
   const [shrink, setShrink] = useState(false);
 
   const cartData = useSelector((state) => state.cart.value);
+  const isLogin = useSelector((state) => state.auth.token);
 
   const handleTopHide = () => {
     setTopHide(false);
@@ -134,7 +135,7 @@ const Header = () => {
                   <></>
                 )}
               </Link>
-              <Link to={"/admin"}>
+              <Link to={isLogin ? "/admin" : "/login"}>
                 <FaRegCircleUser className="h-5 w-6" />
               </Link>
             </div>
