@@ -26,8 +26,8 @@ const NewArivals = ({ title }) => {
             {isLoading ? (
               <ProductsLoading limit={limit} />
             ) : (
-              data?.innerData?.map((product) => (
-                <Product key={product?._id} data={product} />
+              data?.payload?.map((product) => (
+                <Product key={product?._id} data={product} isAdmin={false} />
               ))
             )}
           </div>

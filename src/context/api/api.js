@@ -4,7 +4,7 @@ import { logout } from "../slice/authSlice";
 const baseQuery = async (args, api, extraOptions) => {
   const { dispatch } = api;
   const rawBaseQuery = fetchBaseQuery({
-    baseUrl: "https://e-commerce-backend-14jn.onrender.com",
+    baseUrl: "https://shop.lutfullo.uz/",
     prepareHeaders: (headers) => {
       const token = localStorage.getItem("x-auth-token");
       if (token) {

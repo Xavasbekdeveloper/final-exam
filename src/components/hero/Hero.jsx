@@ -7,7 +7,7 @@ const Hero = () => {
   return (
     <>
       <section className="bg-[#F2F0F1]">
-        <div className="container flex items-end justify-between gap-16 flex-wrap">
+        <div className="container flex items-end justify-between gap-16 max-lg:flex-wrap max-lg:justify-center ">
           <div className="py-16 w-2/4 max-lg:w-full">
             <h1 className="font-bold text-6xl max-w-xl mb-8 max-sm:text-4xl">
               FIND CLOTHES THAT MATCHES YOUR STYLE
@@ -20,7 +20,7 @@ const Hero = () => {
             <button className="py-4 px-16  rounded-[62px] bg-black text-white font-medium text-base mb-12 max-sm:w-full">
               Shop Now
             </button>
-            <div className="flex items-center gap-8 flex-wrap max-sm:items-center max-sm:justify-center">
+            <div className="flex items-center gap-8 flex-wrap max-sm:items-center max-sm:justify-start">
               <div className="flex flex-col pr-8 border-r border-[#0000001A]">
                 <span className="font-bold text-4xl max-sm:text-2xl">200+</span>
                 <span className="text-base text-[#00000099] max-sm:text-sm">

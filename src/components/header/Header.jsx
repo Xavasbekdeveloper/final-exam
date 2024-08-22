@@ -96,8 +96,8 @@ const Header = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"/on-sale"}>
-                  <span className="text-base font-normal">On Sale</span>
+                <NavLink to={"/brands"}>
+                  <span className="text-base font-normal">Brands</span>
                 </NavLink>
               </li>
               <li>
@@ -135,7 +135,7 @@ const Header = () => {
                   <></>
                 )}
               </Link>
-              <Link to={isLogin ? "/admin" : "/login"}>
+              <Link to={isLogin ? "/admin/create-product" : "/login"}>
                 <FaRegCircleUser className="h-5 w-6" />
               </Link>
             </div>

@@ -1,6 +1,8 @@
 import React, { memo, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
+import Empty from "../../components/empty";
+import emptyImg from "../../assets/images/empty-cart.jpg";
 
 const Cart = () => {
   const cartData = useSelector((state) => state.cart.value);
@@ -16,7 +18,7 @@ const Cart = () => {
           <Outlet />
         </section>
       ) : (
-        <h1>Cart is empty</h1>
+        <Empty img={emptyImg} />
       )}
     </>
   );

@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import { IoIosStar, IoIosStarHalf, IoIosStarOutline } from "react-icons/io";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { IoCart, IoCartOutline } from "react-icons/io5";
@@ -6,8 +6,15 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addWishlist } from "../../context/slice/wishlistSlice";
 import { addToCart } from "../../context/slice/cartSlice";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { FiEdit } from "react-icons/fi";
+import Delete from "./delete/Delete";
+import Modal from "../modal/Modal";
+import Update from "./update/Update";
 
-const Product = ({ data }) => {
+const Product = ({ data, isAdmin }) => {
+  const [deleteProduct, setDeleteProduct] = useState(null);
+  const [editProduct, setEditProduct] = useState(null);
   const dispatch = useDispatch();
   const wishlistData = useSelector((state) => state.wishlist.data);
   const cartData = useSelector((state) => state.cart.value);
@@ -36,15 +43,42 @@ const Product = ({ data }) => {
   return (
     <>
       <div className="flex flex-col">
-        <Link to={`/detail/${data?._id}`}>
-          <div className=" h-[298px] w-full bg-[#F0EEED] rounded-[20px] p-3 mb-4 max-[500px]:h-60">
+        <div className="h-[298px] w-full bg-[#F0EEED] rounded-[20px] p-3 mb-4 max-[500px]:h-60 relative group">
+          <Link to={`/detail/${data?._id}`}>
             <img
               className="w-full h-full object-contain"
               src={data?.urls[0]}
               alt={data?.title}
             />
-          </div>
-        </Link>
+          </Link>
+          {isAdmin ? (
+            <></>
+          ) : (
+            <div className="absolute top-3 right-2 opacity-0 duration-150 group-hover:opacity-100 flex items-center justify-start gap-3 max-md:opacity-100">
+              <button
+                onClick={() => dispatch(addWishlist(data))}
+                className="text-[#00000066] grid place-items-center p-1.5 rounded-3xl border border-[#00000066] max-[500px]:p-1"
+              >
+                {wishlistData.some((el) => el._id === data._id) ? (
+                  <FaHeart className="w-4 h-4 max-[500px]:w-3 max-[500px]:h-3 text-[#00000066]" />
+                ) : (
+                  <FaRegHeart className="w-4 h-4 max-[500px]:w-3 max-[500px]:h-3" />
+                )}
+              </button>
+              <button
+                onClick={() => dispatch(addToCart(data))}
+                className="text-[#00000066] grid place-items-center p-1.5 rounded-3xl border border-[#00000066] max-[500px]:p-1"
+              >
+                {cartData.some((el) => el._id === data._id) ? (
+                  <IoCart className="w-4 h-4 max-[500px]:w-3 max-[500px]:h-3 text-[#00000066]" />
+                ) : (
+                  <IoCartOutline className="w-4 h-4 max-[500px]:w-3 max-[500px]:h-3" />
+                )}
+              </button>
+            </div>
+          )}
+        </div>
+
         <div className="pr-2">
           <h3
             title={data?.title}
@@ -71,31 +105,46 @@ const Product = ({ data }) => {
                 <></>
               )}
             </div>
-            <div className="flex items-center justify-start gap-3">
-              <button
-                onClick={() => dispatch(addWishlist(data))}
-                className="text-[#00000066] grid place-items-center p-1.5 rounded-3xl border border-[#00000066] max-[500px]:p-1"
-              >
-                {wishlistData.some((el) => el._id === data._id) ? (
-                  <FaHeart className="w-4 h-4 max-[500px]:w-3 max-[500px]:h-3 text-[#00000066]" />
-                ) : (
-                  <FaRegHeart className="w-4 h-4 max-[500px]:w-3 max-[500px]:h-3" />
-                )}
-              </button>
-              <button
-                onClick={() => dispatch(addToCart(data))}
-                className="text-[#00000066] grid place-items-center p-1.5 rounded-3xl border border-[#00000066] max-[500px]:p-1"
-              >
-                {cartData.some((el) => el._id === data._id) ? (
-                  <IoCart className="w-4 h-4 max-[500px]:w-3 max-[500px]:h-3 text-[#00000066]" />
-                ) : (
-                  <IoCartOutline className="w-4 h-4 max-[500px]:w-3 max-[500px]:h-3" />
-                )}
-              </button>
-            </div>
+            {isAdmin ? (
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setEditProduct(data)}
+                  className="py-1 px-1.5 border border-black rounded-lg"
+                >
+                  <FiEdit />
+                </button>
+                <button
+                  onClick={() => setDeleteProduct(data)}
+                  className="py-1 px-1.5 border border-black rounded-lg"
+                >
+                  <RiDeleteBin6Line />
+                </button>
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>
+
+      {deleteProduct ? (
+        <Modal close={setDeleteProduct} width={400}>
+          <Delete
+            deleteProduct={deleteProduct}
+            setDeleteProduct={setDeleteProduct}
+          />
+        </Modal>
+      ) : (
+        <></>
+      )}
+
+      {editProduct ? (
+        <Modal close={setEditProduct} width={500}>
+          <Update editProduct={editProduct} setEditProduct={setEditProduct} />
+        </Modal>
+      ) : (
+        <></>
+      )}
     </>
   );
 };
