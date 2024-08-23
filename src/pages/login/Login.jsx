@@ -62,6 +62,7 @@ const Login = () => {
               Username
             </label>
             <input
+              value={"ali32"}
               type="text"
               id="username"
               {...register("username")}
@@ -85,6 +86,7 @@ const Login = () => {
               Password
             </label>
             <input
+              value={"12345678"}
               type={showPassword ? "text" : "password"}
               id="password"
               {...register("password")}

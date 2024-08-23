@@ -101,11 +101,6 @@ const Header = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"/new-arrivals"}>
-                  <span className="text-base font-normal">New Arrivals</span>
-                </NavLink>
-              </li>
-              <li>
                 <NavLink to={"/wishlist"}>
                   <span className="text-base font-normal">Wishlist</span>
                 </NavLink>
