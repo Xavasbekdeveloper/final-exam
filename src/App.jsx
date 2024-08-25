@@ -6,6 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 const Layout = lazy(() => import("./pages/layout/Layout"));
 const NotFound = lazy(() => import("./pages/not-found/Notfound"));
 const Home = lazy(() => import("./pages/home/Home"));
+const Shop = lazy(() => import("./pages/shop/Shop"));
+const Brand = lazy(() => import("./pages/brands/Brends"));
 const Detail = lazy(() => import("./pages/detail/Detail"));
 const Wishlist = lazy(() => import("./pages/wishlist/Wishlist"));
 const Cart = lazy(() => import("./pages/cart/Cart"));
@@ -35,6 +37,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/brands" element={<Brand />} />
           <Route path="/cart" element={<Cart />}>
             <Route path="view" element={<CartView />} />
             <Route path="checkout" element={<CartCheckout />} />

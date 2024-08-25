@@ -84,7 +84,7 @@ const View = () => {
                       </h3>
                       <div>
                         <button onClick={() => dispatch(removeCart(product))}>
-                          <RiDeleteBin6Line className="text-[#FF3333] w-[18px] h-[19.5px]" />
+                          <RiDeleteBin6Line className="text-black w-[18px] h-[19.5px]" />
                         </button>
                       </div>
                     </div>
