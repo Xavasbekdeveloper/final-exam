@@ -7,6 +7,7 @@ import { FaRegCircleUser, FaBarsStaggered } from "react-icons/fa6";
 
 import logo from "../../assets/icons/logo.svg";
 import { useSelector } from "react-redux";
+import Search from "./search/Search";
 
 const Header = () => {
   const [topHide, setTopHide] = useState(true);
@@ -14,6 +15,7 @@ const Header = () => {
   const [shrink, setShrink] = useState(false);
 
   const cartData = useSelector((state) => state.cart.value);
+  const wishlistData = useSelector((state) => state.wishlist.data);
   const isLogin = useSelector((state) => state.auth.token);
 
   const handleTopHide = () => {
@@ -92,7 +94,6 @@ const Header = () => {
               <li>
                 <NavLink className={"flex items-center gap-1"} to={"/shop"}>
                   <span className="text-base font-normal">Shop</span>
-                  <IoIosArrowDown />
                 </NavLink>
               </li>
               <li>
@@ -101,20 +102,20 @@ const Header = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"/wishlist"}>
-                  <span className="text-base font-normal">Wishlist</span>
+                <NavLink className={"relative"} to={"/wishlist"}>
+                  <p className="text-base font-normal">Wishlist</p>
+                  {wishlistData?.length ? (
+                    <span className="absolute -top-2 -right-3.5 text-white text-[10px] w-5 h-5 rounded-full bg-[#c0c0c0] flex items-center justify-center">
+                      {wishlistData?.length}
+                    </span>
+                  ) : (
+                    <></>
+                  )}
                 </NavLink>
               </li>
             </ul>
-            <div className="flex-1 flex items-center h-12 bg-[#F0F0F0] rounded-[62px] overflow-hidden max-lg:hidden">
-              <button className="h-full px-3">
-                <IoSearch className="w-5 h-5 text-[#00000066]" />
-              </button>
-              <input
-                className="flex-1 h-full bg-[#F0F0F0] text-base text-[#00000066] outline-none pl-1"
-                type="text"
-                placeholder="Search for products..."
-              />
+            <div className="flex-1">
+              <Search />
             </div>
             <div className="flex items-center gap-4 max-md:gap-2">
               <button className="hidden max-lg:block">

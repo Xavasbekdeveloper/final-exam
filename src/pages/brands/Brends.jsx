@@ -4,8 +4,8 @@ import { NavLink } from "react-router-dom";
 
 const BrandPage = () => {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="grid grid-cols-4 gap-12 max-md:grid-cols-3 max-sm:grid-cols-2 gap-y-8">
+    <div className="container">
+      <div className="grid grid-cols-4 gap-12 py-10 max-md:grid-cols-3 max-sm:grid-cols-2 gap-y-8">
         {Brands?.map((el) => (
           <NavLink
             target="_blank"
